@@ -1,0 +1,59 @@
+/* Imagens com tamanho fixo, borda e arredondamento */
+.imagem1 {
+    width: 120px;
+    height: 120px;
+    border: 5px solid black;
+    border-radius: 10px;
+    object-fit: cover; /* Garante que a imagem se encaixe no espaço sem distorção */
+}
+
+/* Fase com display grid para organizar as imagens */
+.fase {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); /* Definir 120px de largura mínima */
+    grid-gap: 15px; /* Espaçamento entre as imagens */
+    justify-items: center;
+    margin: 50px 0px;
+}
+
+/* Mensagens de vitória e fim de jogo */
+.game-won-message, .game-over-message {
+    text-align: center;
+    font-size: 2rem;
+    margin-top: 20px;
+}
+
+/* Botão de reiniciar centralizado */
+#restartButton {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#restartButton:hover {
+    background-color: #218838;
+}
+
+/* Controles de movimentação */
+.controls {
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* Ajustes para visualização em telas menores */
+@media (max-height: 640px) {
+    .game-area {
+        height: 360px;  
+    }
+
+    .fase {
+        margin: 20px 0px;
+        grid-gap: 10px; /* Ajusta o gap para telas menores */
+    }
+}
