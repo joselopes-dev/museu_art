@@ -8,35 +8,36 @@ let gameWidth = window.innerWidth;
 let playerWidth = 50;
 let moveInterval;
 
-document.addEventListener('keydown', handleKeyDown);
-document.addEventListener('keyup', stopMovement);
+// Detecta o pressionamento e soltura dos botões
+document.getElementById('leftButton').addEventListener('mousedown', () => startMoving('left'));
+document.getElementById('leftButton').addEventListener('mouseup', stopMovement);
+document.getElementById('leftButton').addEventListener('mouseleave', stopMovement);
 
-function handleKeyDown(event) {
-    if (event.key === "ArrowRight" || event.key === "d") {
-        startMoving("right");
-    } else if (event.key === "ArrowLeft" || event.key === "a") {
-        startMoving("left");
-    }
-}
+document.getElementById('rightButton').addEventListener('mousedown', () => startMoving('right'));
+document.getElementById('rightButton').addEventListener('mouseup', stopMovement);
+document.getElementById('rightButton').addEventListener('mouseleave', stopMovement);
 
+// Função para iniciar o movimento
 function startMoving(direction) {
     // Impede que mais de um intervalo de movimento seja criado
     if (moveInterval) return;
 
     moveInterval = setInterval(() => {
-        if (direction === "right") {
+        if (direction === 'right') {
             moveRight();
-        } else if (direction === "left") {
+        } else if (direction === 'left') {
             moveLeft();
         }
-    }, 50); // Move o jogador a cada 50ms enquanto a tecla estiver pressionada
+    }, 50); // Move o jogador a cada 50ms enquanto o botão estiver pressionado
 }
 
+// Função para parar o movimento
 function stopMovement() {
     clearInterval(moveInterval);
     moveInterval = null; // Reseta o intervalo para permitir novos movimentos
 }
 
+// Função de mover para a direita
 function moveRight() {
     if (playerPositionLeft + playerWidth < gameWidth) {
         playerPositionLeft += 10;
@@ -45,6 +46,7 @@ function moveRight() {
     checkPhaseProgress();
 }
 
+// Função de mover para a esquerda
 function moveLeft() {
     if (playerPositionLeft > 0) {
         playerPositionLeft -= 10;
@@ -52,6 +54,7 @@ function moveLeft() {
     }
 }
 
+// Função para verificar progresso de fase
 function checkPhaseProgress() {
     if (playerPositionLeft + playerWidth >= gameWidth && currentPhase < maxPhases) {
         advanceToNextPhase();
@@ -60,22 +63,25 @@ function checkPhaseProgress() {
     }
 }
 
+// Função para avançar para a próxima fase
 function advanceToNextPhase() {
     currentPhase++;
-    playerPositionLeft = 50;
+    playerPositionLeft = 50; // Resetar a posição do jogador
     player.style.left = playerPositionLeft + 'px';
-    
+
     // Ocultar a fase anterior e exibir a próxima
     document.getElementById(`fase${currentPhase - 1}`).style.display = 'none';
     document.getElementById(`fase${currentPhase}`).style.display = 'grid'; // Certifique-se de que o próximo "display" seja "grid"
 }
 
+// Função para mostrar mensagem de vitória
 function showGameWonMessage() {
     gameWonMessage.style.display = 'block';
     restartButton.style.display = 'block'; // Exibir o botão de reiniciar
     launchConfetti(); // Lançar confetes
 }
 
+// Função para lançar confetes
 function launchConfetti() {
     let duration = 5 * 1000;
     let animationEnd = Date.now() + duration;
@@ -98,6 +104,7 @@ function launchConfetti() {
     }, 250);
 }
 
+// Função para atualizar a largura do jogo
 function updateGameWidth() {
     gameWidth = window.innerWidth;
     playerWidth = player.offsetWidth;
