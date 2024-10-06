@@ -6,35 +6,33 @@ const gameWonMessage = document.getElementById('gameWonMessage');
 const restartButton = document.getElementById('restartButton');
 let gameWidth = window.innerWidth;
 let playerWidth = 50;
-let moveInterval;
+let moveInterval = null; // Variável para armazenar o intervalo de movimento
 
-// Detecta o pressionamento e soltura dos botões
-document.getElementById('leftButton').addEventListener('mousedown', () => startMoving('left'));
-document.getElementById('leftButton').addEventListener('mouseup', stopMovement);
-document.getElementById('leftButton').addEventListener('mouseleave', stopMovement);
+// Adicionando eventos de pressionar e soltar para os botões de mover
+document.getElementById('leftButton').addEventListener('mousedown', startMoveLeft);
+document.getElementById('leftButton').addEventListener('mouseup', stopMoving);
+document.getElementById('leftButton').addEventListener('mouseleave', stopMoving);
 
-document.getElementById('rightButton').addEventListener('mousedown', () => startMoving('right'));
-document.getElementById('rightButton').addEventListener('mouseup', stopMovement);
-document.getElementById('rightButton').addEventListener('mouseleave', stopMovement);
+document.getElementById('rightButton').addEventListener('mousedown', startMoveRight);
+document.getElementById('rightButton').addEventListener('mouseup', stopMoving);
+document.getElementById('rightButton').addEventListener('mouseleave', stopMoving);
 
-// Função para iniciar o movimento
-function startMoving(direction) {
-    // Impede que mais de um intervalo de movimento seja criado
+// Função para iniciar o movimento para a direita
+function startMoveRight() {
+    if (moveInterval) return; // Evita múltiplos intervalos simultâneos
+    moveInterval = setInterval(moveRight, 50); // Move a cada 50ms
+}
+
+// Função para iniciar o movimento para a esquerda
+function startMoveLeft() {
     if (moveInterval) return;
-
-    moveInterval = setInterval(() => {
-        if (direction === 'right') {
-            moveRight();
-        } else if (direction === 'left') {
-            moveLeft();
-        }
-    }, 50); // Move o jogador a cada 50ms enquanto o botão estiver pressionado
+    moveInterval = setInterval(moveLeft, 50); // Move a cada 50ms
 }
 
 // Função para parar o movimento
-function stopMovement() {
+function stopMoving() {
     clearInterval(moveInterval);
-    moveInterval = null; // Reseta o intervalo para permitir novos movimentos
+    moveInterval = null; // Reseta a variável para permitir novo movimento
 }
 
 // Função de mover para a direita
@@ -54,7 +52,7 @@ function moveLeft() {
     }
 }
 
-// Função para verificar progresso de fase
+// Função para verificar progresso da fase
 function checkPhaseProgress() {
     if (playerPositionLeft + playerWidth >= gameWidth && currentPhase < maxPhases) {
         advanceToNextPhase();
