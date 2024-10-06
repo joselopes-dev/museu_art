@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Museo de Artes</title>
+    <title>Museu de Artes - José</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -11,14 +11,14 @@
      <!-- Tela Inicial -->
      <div class="front" id="startScreen">
         <h1>Museu de Artes - José</h1>
-            <br>
-        <img class="front1" src="tela_front.jpeg" width="200px" height="200px" alt="">
         <br>
-
+        <img class="front1" src="./tela_front.jpeg" width="200px" height="200px" alt="Tela inicial">
+        <br>
         <button class="play-button" onclick="startGame()">PLAY</button>
      </div>
 
-    <div class="game-area game2" id="gamesMenu" style="display:none;">
+    <!-- Área de jogo -->
+    <div class="game-area" id="gamesMenu" style="display:none;">
         <div class="player" id="player"></div>
         
         <!-- Fase 1 -->
@@ -29,6 +29,8 @@
             <img class="imagem1" src="./arvores.jpeg" width="100px" height="100px" alt="">
             <img class="imagem1" src="./andorinha.jpeg" width="100px" height="100px" alt="">
             <img class="imagem1" src="./canoa.jpeg" width="100px" height="100px" alt="">
+            
+            
         </div>
 
         <!-- Fase 2 -->
@@ -38,94 +40,109 @@
             <img class="imagem1" src="./canoa2.jpeg" width="100px" height="100px" alt="">
             <img class="imagem1" src="./flores2.jpeg" width="100px" height="100px" alt="">
             <img class="imagem1" src="./girafa.jpeg" width="100px" height="100px" alt="">
-            <img class="imagem1" src="./homem.jpeg" width="100px" height="100px" alt="">
+            <img class="imagem1" src="./homem.jpeg" width="100px" height="100px" alt="">           
         </div>
 
         <!-- Fase 3 -->
         <div id="fase3" class="fase" style="display: none;">
             <img class="imagem1" src="./florautorelevo.jpeg" width="100px" height="100px" alt="">
             <img class="imagem1" src="./labio.jpeg" width="100px" height="100px" alt="">
-            <img class="imagem1" src="./lago.jpeg" width="100px" height="100px" alt="">
-            <img class="imagem1" src="./passaro.jpeg" width="100px" height="100px" alt="">
-            
+            <img class="imagem1" src="./img/arvore.jpeg" width="100px" height="100px" alt="">
+            <img class="imagem1" src="./img/barco_luar.jpeg" width="100px" height="100px" alt="">
+            <img class="imagem1" src="./img/forma.jpeg" width="100px" height="100px" alt="">
+            <img class="imagem1" src="./img/triangulo.jpeg" width="100px" height="100px" alt="">
         </div>
 
         <!-- Fase 4 -->
         <div id="fase4" class="fase" style="display: none;">
             <img class="imagem1" src="./peixe.jpeg" width="100px" height="100px" alt="">
             <img class="imagem1" src="./peixe2.jpeg" width="100px" height="100px" alt="">
-            <img class="imagem1" src="./imagem_museu2.jpeg" width="100px" height="100px" alt="">
-            <img class="imagem1" src="./imagem_museu1.jpeg" width="100px" height="100px" alt="">
+            <img class="imagem1" src="./img/borboleta.jpeg" width="100px" height="100px" alt="">
+            <img class="imagem1" src="./img/cabeca_flor.jpeg" width="100px" height="100px" alt="">
+            <img class="imagem1" src="./img/peixe_bolha.jpeg" width="100px" height="100px" alt="">
+            <img class="imagem1" src="./img/por_sol.jpeg" width="100px" height="100px" alt="">
         </div>
 
         <!-- Fase 5 -->
         <div id="fase5" class="fase" style="display: none;">
             <img class="imagem1" src="./elefante.jpeg" width="100px" height="100px" alt="">
-            <img class="imagem1" src="./planeta.jpeg" width="100px" height="100px" alt="">
-            <img class="imagem1" src="./imagem_museu2.jpeg" width="100px" height="100px" alt="">
-            
+            <img class="imagem1" src="./img/cachorro.jpeg" width="100px" height="100px" alt="">
+            <img class="imagem1" src="./img/casas_luar.jpeg" width="100px" height="100px" alt="">
+            <img class="imagem1" src="./img/duas_flores.jpeg" width="100px" height="100px" alt="">
+            <img class="imagem1" src="./img/rosto.jpeg" width="100px" height="100px" alt="">
         </div>
     </div>
 
+    <!-- Mensagens de jogo -->
+    <div class="game-over-message" id="gameOverMessage" style="display:none;">“Tu é leso, é?”.</div>
+    <div class="game-won-message" id="gameWonMessage" style="display:none;">Lacrou!</div>
 
-<div class="game-over-message" id="gameOverMessage">“”.</div>
-<div class="game-won-message" id="gameWonMessage">Lacrou!</div>
+    <!-- Botão de reiniciar -->
+    <button id="restartButton" style="display:none;" onclick="restartGame()">Reiniciar</button>
 
-<!-- Botão de reiniciar -->
-<button id="restartButton" style="display: none;">Reiniciar</button>
+    <!-- Controles -->
+    <div class="controls" style="display:none;" id="controls">
+        <button id="leftButton" onclick="movePlayer(-1)">Recuar</button>
+        <button id="rightButton" onclick="movePlayer(1)">Correr</button>
+    </div>
 
-<!-- Controles escondidos na tela inicial -->
-<div class="controls" style="display:none;" id="controls">
-    <button id="leftButton">Recuar</button>
-    <button id="rightButton">Correr</button>
-</div>
+    <style>
+        #startScreen {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
 
-<style>
-    #startScreen {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-    }
+        .play-button {
+            padding: 15px 30px;
+            font-size: 24px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
 
-    .play-button {
-        padding: 15px 30px;
-        font-size: 24px;
-        background-color: #4CAF50;
-        color: white;
-        border: none;
-        border-radius: 8px;
-        cursor: pointer;
-        transition: background-color 0.3s;
-    }
+        .play-button:hover {
+            background-color: #45a049;
+        }
 
-    .play-button:hover {
-        background-color: #45a049;
-    }
 
-    .controls {
-        text-align: center;
-        margin-top: 20px;
-        
-    }
+        button {
+            margin: 5px;
+            padding: 10px;
+        }
 
-    .front1 {
-        border: black solid 4px;
-        border-radius: 20px;
-    }
-</style>
-<!--<script src="script5.js"></script>-->
-<script src="script4.js"></script>
+        .front1 {
+            border-radius: 20px;
+        }
+    </style>
 
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 
-<script>
-    // Função para iniciar o jogo, ocultar a tela inicial e mostrar o menu de jogos e os controles
-    function startGame() {
-        document.getElementById('startScreen').style.display = 'none';
-        document.getElementById('gamesMenu').style.display = 'flex';
-        document.getElementById('controls').style.display = 'flex'; // Exibir os controles após iniciar o jogo
-    }
-</script>
+    <script>
+        let playerPosition = 0;  // Posição inicial do jogador
+
+        function startGame() {
+            document.getElementById('startScreen').style.display = 'none';
+            document.getElementById('gamesMenu').style.display = 'flex';
+            document.getElementById('controls').style.display = 'flex';
+        }
+
+        // Função para reiniciar o jogo
+        function restartGame() {
+            playerPosition = 0;
+            document.getElementById('player').style.transform = 'translateX(0px)';
+            document.getElementById('gameOverMessage').style.display = 'none';
+            document.getElementById('gameWonMessage').style.display = 'none';
+            document.getElementById('restartButton').style.display = 'none';
+        }
+    </script>
+
+    <script src="script4.js"></script>
+
 </body>
 </html>
+
