@@ -88,7 +88,7 @@ restartButton.addEventListener('click', function() {
 
 function advanceToNextPhase() {
     currentPhase++;
-    playerPositionLeft = 50; // Resetar a posição do jogador
+    playerPositionLeft = 0; // Resetar a posição do jogador
     player.style.left = playerPositionLeft + 'px';
 
     // Ocultar a fase anterior e exibir a próxima
