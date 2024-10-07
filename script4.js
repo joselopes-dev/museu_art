@@ -50,7 +50,7 @@ function showGameWonMessage() {
 }
 
 function launchConfetti() {
-    let duration = 5 * 1000;
+    let duration = 5 * 100;
     let animationEnd = Date.now() + duration;
     let defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 1000 };
 
