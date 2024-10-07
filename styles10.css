@@ -1,0 +1,317 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    /*background-color: orange;*/
+    background-image: url("backgralde1.png");
+}
+
+#startScreen {
+    margin: 200px 0px 0px;
+}
+
+.game-area {
+    position: relative;
+    width: 100%;
+    max-width: 100vw;
+    height: 600px;
+    border: 5px solid orange;
+    overflow: hidden;
+    background-image: url("backgralde1.png");
+    background-size: cover; /* Ajusta o tamanho da imagem */
+    background-position: center;
+}
+    
+.player {
+    position: absolute;
+    bottom: 0;
+    left: 50px;
+    width: 50px;
+    height: 50px;
+    background-image: url('img-sonyc-unscreen.gif'); /* Substitua 'animal.png' pelo caminho da sua imagem */
+    background-size: cover; /* Ajusta o tamanho da imagem */
+    background-position: center;
+    border-radius: 0; /* Remove a borda arredondada para a imagem se ajustar corretamente */
+}
+
+#player {
+    position: absolute;
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    bottom: 0px;
+    left: 20px; /* Posição inicial */
+}
+
+.game-won-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 5rem; /* Tamanho grande */
+    color: green;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    display: none; /* Escondido até ser necessário */
+    z-index: 1000; /* Para garantir que fique acima de todos os elementos */
+}
+
+.game-over-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 5rem; /* Tamanho grande */
+    color: red;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    display: none; /* Escondido até ser necessário */
+    z-index: 1000; /* Para garantir que fique acima de todos os elementos */
+}
+
+
+
+#restartButton {
+    position: absolute;
+    top: 60%; /* Abaixo da mensagem de vitória ou game over */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px 20px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: none; /* Escondido até ser necessário */
+}
+
+.controls {
+  display: none;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+}
+
+
+@media (max-width: 640px) {
+    button {
+        font-size: 10px;
+    }
+
+    .game-area {
+        height: 650px;
+    }
+
+    .controls {
+        position: fixed;
+        bottom: 20px;
+        left: 0;
+        right: 0;
+        display: flex;
+        justify-content: space-around;
+        min-height: auto;
+    }
+
+    #startScreen {
+         margin: 150px 0px 0px;
+    }
+
+    @media (max-width: 640px) {
+        button {
+            font-size: 10px;
+        }
+    
+        .game-area {
+            height: 650px;
+        }
+    
+        .controls {
+            position: fixed;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-around;
+            min-height: auto;
+        }
+    
+        #startScreen {
+            margin: 150px 0px 0px;
+        }
+    
+        /* Imagens com tamanho fixo, borda e arredondamento */
+        .imagem1 {
+            width: 100px;
+            height: 100px;
+            border: 5px solid black;
+            border-radius: 10px;
+            object-fit: cover; /* Garante que a imagem se encaixe no espaço sem distorção */
+        }
+    
+        /* Fase com display grid para organizar as imagens */
+        .fase {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* Define exatamente 3 colunas com tamanho igual */
+            grid-gap: 10px; /* Espaçamento entre as imagens */
+            justify-items: center;
+            margin: 50px auto; /* Centraliza o grid na página */
+            width: 100%;
+            max-width: 1000px;
+        }
+    }
+}    
+
+@media (max-height: 640px) {
+    .game-area {
+        height: 300px;  
+    }
+
+    .fase {
+
+        margin: 100px 0px 0px;
+        gap: 10px;
+        max-width: 800px;
+
+    }
+
+    #startScreen {
+        margin: 10px 0px 0px;
+    }
+
+}
+
+#gameOverMessage, #gameWonMessage {
+    display: none;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2rem;
+    color: red;
+    text-align: center;
+    z-index: 10; /* Garantir que a mensagem esteja acima do resto */
+    
+}
+
+#restartButton {
+    display: none;
+    position: absolute;
+    top: 50%; /* Posicionar abaixo da mensagem */
+    left: 50%;
+    transform: translate(-50%, 20px); /* Ajustar para ficar centralizado e abaixo */
+    padding: 10px 20px;
+    font-size: 1.5rem;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    z-index: 9; /* Deve ser menor que o da mensagem, mas ainda acima dos outros elementos */
+}
+
+
+/* Imagens com tamanho fixo, borda e arredondamento */
+.imagem1 {
+    width: 100px;
+    height: 100px;
+    border: 5px solid black;
+    border-radius: 10px;
+    object-fit: cover; /* Garante que a imagem se encaixe no espaço sem distorção */
+}
+
+/* Fase com display grid para organizar as imagens */
+.fase {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 3fr)); /* Definir 120px de largura mínima */
+    grid-gap: 10px; /* Espaçamento entre as imagens */
+    justify-items: center;
+    margin: 50px 0px;
+    width: 100%;
+    max-width: 1000px;
+    margin: 50px auto; /* Centraliza o grid na página */
+}
+
+/* Mensagens de vitória e fim de jogo */
+.game-won-message, .game-over-message {
+    text-align: center;
+    font-size: 2rem;
+    margin-top: 20px;
+}
+
+/* Botão de reiniciar centralizado */
+#restartButton {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#restartButton:hover {
+    background-color: #218838;
+}
+
+/* Ajustes para visualização em telas menores */
+@media (max-height: 640px) {
+    .game-area {
+        height: 300px;  
+    }
+
+    .fase {
+        margin: 20px 0px;
+        grid-gap: 10px; /* Ajusta o gap para telas menores */
+
+    }
+
+    button {
+        font-size: 10px;
+    }
+
+    .controls {
+        position: fixed;
+        bottom: 20px;
+        left: 0;
+        right: 0;
+        display: flex;
+        justify-content: space-around;
+        min-height: auto;
+    }
+
+    .front {
+        height: 360px;
+    }
+
+    .imagem1 {
+        height: 110px;
+        width: 110px;
+    }
+
+    .fase {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Definir 120px de largura mínima */
+        grid-gap: 10px; /* Espaçamento entre as imagens */
+        justify-items: center;
+        margin: 50px 0px;
+        width: 100%;
+       
+    }
+
+    .imagem1 {
+        width: 100px;
+        height: 100px;
+        border: 5px solid black;
+        border-radius: 10px;
+        object-fit: cover; /* Garante que a imagem se encaixe no espaço sem distorção */
+    }
+}
+
+
