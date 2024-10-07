@@ -63,7 +63,7 @@ function stopMovement() {
 // Função para mover o jogador para a direita
 function moveRight() {
     if (playerPositionLeft + playerWidth < gameWidth) {
-        playerPositionLeft += 1;
+        playerPositionLeft += 0.5;
         player.style.left = playerPositionLeft + 'px';
     }
     checkPhaseProgress();
@@ -72,7 +72,7 @@ function moveRight() {
 // Função para mover o jogador para a esquerda
 function moveLeft() {
     if (playerPositionLeft > 0) {
-        playerPositionLeft -= 1;
+        playerPositionLeft -= 0.5;
         player.style.left = playerPositionLeft + 'px';
     }
 }
