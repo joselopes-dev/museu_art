@@ -6,7 +6,7 @@
 
 body {
     /*background-color: orange;*/
-    background-image: url("backgralde1.png");
+    background-image: url("./backgralde1.png");
 }
 
 #startScreen {
@@ -20,7 +20,7 @@ body {
     height: 600px;
     border: 5px solid orange;
     overflow: hidden;
-    background-image: url("backgralde1.png");
+    background-image: url("./backgralde1.png");
     background-size: cover; /* Ajusta o tamanho da imagem */
     background-position: center;
 }
@@ -31,7 +31,7 @@ body {
     left: 50px;
     width: 50px;
     height: 50px;
-    background-image: url('img-sonyc-unscreen.gif'); /* Substitua 'animal.png' pelo caminho da sua imagem */
+    background-image: url('./img-sonyc-unscreen.gif'); /* Substitua 'animal.png' pelo caminho da sua imagem */
     background-size: cover; /* Ajusta o tamanho da imagem */
     background-position: center;
     border-radius: 0; /* Remove a borda arredondada para a imagem se ajustar corretamente */
